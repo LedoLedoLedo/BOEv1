@@ -1,0 +1,30 @@
+<section class="lo-favorites-list">
+  <h5>Favorites</h5>
+  <ul>
+    <% let favoriteSchools = []; %> <% for (i = 0; i <= 3; i++) { %> <% let
+    randomSchool = schools[Math.floor(Math.random() * schools.length)]; %> <% if
+    (!(favoriteSchools.includes(randomSchool))) { %> <%
+    favoriteSchools.push(randomSchool); %> <% } %> <% } %> <%
+    favoriteSchools.sort((a,b) => { %> <% if (a.name < b.name) { %> <% return
+    -1; %> <% } %> <% }); %> <% favoriteSchools.forEach(school => { %>
+    <li>
+      <a class="list-group-item">
+        <section class="lo-list-img-side">
+          <div class="lo-logo-wrapper">
+            <img class="companylogo" src="<%= school.logoUrl %>" alt="Logo" />
+          </div>
+        </section>
+        <section class="lo-list-text-side">
+          <h6><%= school.name %></h6>
+          <p><%= school.type %></p>
+          <p><%= school.programs %></p>
+          <p><%= school.location.city %>, <%= school.location.state %></p>
+        </section>
+      </a>
+      <aside class="lo-save-listing">
+        <i class="fa-solid fa-heart active"></i>
+      </aside>
+    </li>
+    <% }); %>
+  </ul>
+</section>

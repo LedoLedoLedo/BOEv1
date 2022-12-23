@@ -2,26 +2,38 @@
 <html lang="en" dir="ltr">
   <head>
     <%- include('../partials/head'); %>
-    <link rel="stylesheet" href="/css/lo.css" />
   </head>
   <body class="lo-body">
     <%- include('../partials/nav'); %>
-    <section class="lo-section-main">
-      <div class="lo-container lo-container-big">
-        <h1>Welcome <%= name %></h1>
-        <section class="lo-profile-card lo-profile-card-avatar">
-          <p>HELLO</p>
+    <section class="lo-section-main lo-section-widgets">
+      <div class="lo-container lo-profile-card lo-profile-card-sm-h">
+        <section class="lo-profile-card-img-side">
+          <div class="lo-avatar-wrapper">
+            <!-- insert user profile photo here: -->
+            <!-- <img
+              class="lo-avatar"
+              src="/images/carousel/healthcareworker.jpeg"
+              alt="user avatar or profile photo"
+            /> -->
+          </div>
         </section>
-        <section class="lo-profile-card lo-profile-card-info">
-          <p class="item">Favorites</p>
-          <p class="item">User Profiles</p>
-          <p class="item">Settings</p>
-          <p class="item">Concerns</p>
+        <section class="lo-profile-card-text-side">
+          <%if (name) {%>
+          <h5><%= name %></h5>
+          <%}%> <%if (email) {%>
+          <p>
+            <a href="mailto:<%=email%>"><%=email%></a>
+          </p>
+          <%}%> <%if (date) {%>
+          <p>Member since <%= date %></p>
+          <%}%>
         </section>
+        <aside><i class="fa fa-ellipsis-h" aria-hidden="true"></i></aside>
       </div>
-      <div class="lo-container lo-container-big"></div>
-      <div class="lo-container lo-container-big"></div>
-      <div class="lo-container lo-container-big"></div>
+      <div class="lo-container">
+        <!-- Favorites List -->
+        <%- include('../partials/listings-favorites'); %>
+      </div>
     </section>
     <%- include('../partials/footer'); %>
   </body>

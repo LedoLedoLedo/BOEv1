@@ -21,6 +21,8 @@ const UserSchema = new mongoose.Schema({
     minlength: 1,
     maxlength: null,
   },
+  date: String,
+  favorites: [],
 });
 
 const UserModel = mongoose.model("User", UserSchema);

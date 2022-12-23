@@ -6,7 +6,7 @@ const https = require("https");
 const File = require("./model/fileSchema");
 const multer = require("multer");
 const http = require("http");
-const session = require('express-session')
+const session = require("express-session");
 
 // const UserSchema = require("./model/userSchema");
 
@@ -119,7 +119,7 @@ app.post("/index.html2", function (req, res) {
   const postedDate = new Date().toLocaleDateString("en-us", {
     year: "numeric",
     month: "numeric",
-    // day: "numeric",
+    day: "numeric",
   });
   const External_Applicant = mongoose.model("External_Applicant", BOESchema);
   const external_applicant = new External_Applicant({
@@ -208,29 +208,6 @@ app.post("/failure", function (req, res) {
 app.post("/success", function (req, res) {
   res.redirect("/");
 });
-
-// --------------------------------------------------------------------- //
-// Register / Sign Up Page - Save to Database - LO
-// app.post("/loginuserlist", function (req, res) {
-//   const userName = req.body.name;
-//   const userEmail = req.body.email;
-//   const userPassword = req.body.password;
-//   const postedDate = new Date().toLocaleDateString("en-us", {
-//     year: "numeric",
-//     month: "numeric",
-//     day: "numeric",
-//   });
-
-//   // store in BOE database
-//   const User = mongoose.model("User", UserSchema);
-//   const user = new User({
-//     Name: userName,
-//     Email: userEmail,
-//     Password: userPassword,
-//     Date: postedDate,
-//   });
-//   user.save();
-// });
 
 // --------------------------------------------------------------------- //
 
