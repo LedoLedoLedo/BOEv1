@@ -53,7 +53,7 @@ passport.deserializeUser(async ({ _id }, done) => {
     if (user) {
       return done(null, user);
     } else {
-      done(user.errors, null);
+      done(null,null);
     }
   });
 });
