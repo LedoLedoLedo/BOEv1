@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const passport = require("passport");
 const { Strategy } = require("passport-local");
-const { UserSchema } = require('./model/userSchema')
+const { UserSchema } = require("./model/userSchema");
 
 let User = null;
 
@@ -12,28 +12,31 @@ const isValidPassword = async (userInput, password) => {
 };
 
 const LoginStrategy = new Strategy(
-  { usernameField: "email", passwordField: "password", passReqToCallback: true },
+  {
+    usernameField: "email",
+    passwordField: "password",
+    passReqToCallback: true,
+  },
   async (req, email, password, done) => {
     try {
       User = req.app.get("UserModel");
       const user = await User.findOne({ email: email });
       if (!user) {
         return done(null, false, {
-          message:
-            "No user found with those credentials. Please try again."
+          message: "Email is incorrect. Please try again.",
         });
       }
 
       const isValid = await isValidPassword(password, user.password);
       if (!isValid) {
         return done(null, false, {
-          message: "Incorrect password. Please try again."
+          message: "Incorrect password. Please try again.",
         });
       }
       return done(null, user);
     } catch (e) {
       return done(null, false, {
-        message: "Something went wrong with your sign in. Please try again."
+        message: "Something went wrong with your sign in. Please try again.",
       });
     }
   }
@@ -49,17 +52,17 @@ passport.deserializeUser(async (req, { _id }, done) => {
   const User = mongoose.model("User", UserSchema);
   User.findById(_id).then((user) => {
     if (user) {
-      req.app.set('user', {
+      req.app.set("user", {
         id: user.id,
         name: user.name,
-        email: user.email
+        email: user.email,
       });
       return done(null, user);
     } else {
-      req.app.set('user', null);
+      req.app.set("user", null);
       done(null, null);
     }
   });
 });
 
-passport.use("local-signin", LoginStrategy);  
+passport.use("local-signin", LoginStrategy);

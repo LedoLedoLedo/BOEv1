@@ -151,16 +151,18 @@ app.post("/login", checkNotAuthenticated, (req, res, next) => {
     }
 
     if (!user) {
-      failureFlash: true,
-      // @TODO: Display login feedback to user on login screen
-      console.log("Error logging in: ", msg.message);
+      console.log("ERROR logging in: ", msg.message);
+      req.flash("error", msg.message);
+      return res.redirect("back");
     }
 
     // Call passport logIn method
     req.logIn(user, (error) => {
       if (error) {
         // @TODO: Handle errors
-        console.log("lo error: " + error);
+        console.log("ERROR reaching profile: " + error); // Failed to serialize user into session.
+        req.flash("error", "Something went wrong. Please try again.");
+        return res.redirect("back");
       }
       req.app.set("user", {
         id: user.id,
