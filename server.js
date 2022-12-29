@@ -112,6 +112,7 @@ app.get("/contact", (req, res) => {
     isAuthenticated: req.isAuthenticated(),
   });
 });
+
 app.get("/profile", checkAuthenticated, async (req, res) => {
   const schools = await School.find();
   const user = req.app.get("user");
@@ -150,10 +151,12 @@ app.post("/login", checkNotAuthenticated, (req, res, next) => {
     }
 
     if (!user) {
+      failureFlash: true,
       // @TODO: Display login feedback to user on login screen
       console.log("Error logging in: ", msg.message);
-    } // Call passport logIn method
+    }
 
+    // Call passport logIn method
     req.logIn(user, (error) => {
       if (error) {
         // @TODO: Handle errors
@@ -164,15 +167,6 @@ app.post("/login", checkNotAuthenticated, (req, res, next) => {
         name: user.name,
         email: user.email,
       });
-      // console.log("REQ>USER", req.user);
-      // res.render("pages/profile", {
-      //   title: req.user.name + " Profile",
-      //   schools: schools,
-      //   name: req.user.name,
-      //   email: req.user.email,
-      //   date: req.user.date,
-      //   isAuthenticated: req.isAuthenticated(),
-      // });
       res.redirect("/profile");
     });
   })(req, res, next);

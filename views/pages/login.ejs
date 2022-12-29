@@ -10,6 +10,8 @@
       <h3>Kickstart a career in a skilled trade.</h3>
       <div class="lo-container lo-container-small">
         <span class="lo-error-message">
+          <% console.log("messages: " + messages); %>
+          <% console.log(Object.keys(messages)) %>
           <% if (messages.error) { %> <%=messages.error %> <% } %>
         </span>
         <form action="/login" method="POST">

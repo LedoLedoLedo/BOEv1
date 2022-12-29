@@ -18,7 +18,7 @@
         class="list-group-item list-group-item-action"
         id="id-<%= i %>"
         href="#item-<%= i %>"
-        // onclick="showInDepthInfo()"
+        // onclick="showInDepthInfo(<%= school._id %>)"
       >
         <section class="lo-list-img-side">
           <div class="lo-logo-wrapper">
@@ -36,9 +36,11 @@
       </a>
       <aside class="lo-save-listing">
         <form action="/user-likes" method="POST">
-          <input type="hidden" name="school_id" value= "<%= school._id %>" />
+          <input type="hidden" name="school_id" value="<%= school._id %>" />
           <button class="icon-button" type="submit">
-            <i class="fa-solid fa-heart <%= school.is_liked ? 'liked' : '' %>"></i>          
+            <i
+              class="fa-solid fa-heart <%= school.is_liked ? 'liked' : '' %>"
+            ></i>
           </button>
         </form>
       </aside>
