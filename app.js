@@ -3,7 +3,7 @@ const bodyParser = require("body-parser");
 const path = require("path");
 const mongoose = require("mongoose");
 const https = require("https");
-const File = require("./model/fileSchema");
+const file = require("./model/fileSchema");
 const multer = require("multer");
 const http = require("http");
 const session = require("express-session");
@@ -73,23 +73,23 @@ const multerStorage = multer.diskStorage({
   },
 });
 
-const multerFilter = (req, file, cb) => {
-  if (file.mimetype.split("/")[1] === "pdf") {
-    cb(null, true);
-  } else if (file.mimetype.split("/")[1] === "jpg") {
-    cb(null, true);
-  } else if (file.mimetype.split("/")[1] === "png") {
-    cb(null, true);
-  } else if (file.mimetype.split("/")[1] === "img") {
-    cb(null, true);
-  } else {
-    cb(new Error("Not an image!!"), false);
-  }
-};
+// const multerFilter = (req, files, cb) => {
+//   if (file.mimetype.split("/")[1] === "pdf") {
+//     cb(null, true);
+//   } else if (file.mimetype.split("/")[1] === "jpg") {
+//     cb(null, true);
+//   } else if (file.mimetype.split("/")[1] === "png") {
+//     cb(null, true);
+//   } else if (file.mimetype.split("/")[1] === "img") {
+//     cb(null, true);
+//   } else {
+//     cb(new Error("Not an image!!"), false);
+//   }
+// };
 
 const upload = multer({
   storage: multerStorage,
-  fileFilter: multerFilter,
+  // fileFilter: multerFilter,
 });
 
 // Get application data
@@ -113,12 +113,14 @@ app.post("/", upload.single("resume"), async (req, res) => {
   res.redirect("/applicationSubmitted.html");
 });
 
+
+
 // Redirect to external application page, store user data
 app.post("/index.html2", function (req, res) {
   const postedDate = new Date().toLocaleDateString("en-us", {
     year: "numeric",
     month: "numeric",
-    // day: "numeric",
+     day: "numeric",
   });
   const External_Applicant = mongoose.model("External_Applicant", BOESchema);
   const external_applicant = new External_Applicant({

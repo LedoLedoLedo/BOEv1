@@ -2,30 +2,29 @@ const mongoose = require("mongoose");
 
 const ContactSchema = new mongoose.Schema({
   name: {
-    type: String
+    type: String,
   },
   number: {
     type: String,
   },
   email: {
-    type: String
+    type: String,
   },
   contactUrl: {
-    type: String
+    type: String,
   },
 });
 
 const LocationSchema = new mongoose.Schema({
   state: {
     type: String,
-    required: true
+    required: true,
   },
   city: {
     type: String,
     required: true,
-  }
+  },
 });
-
 
 const SchoolSchema = new mongoose.Schema({
   name: {
@@ -61,8 +60,9 @@ const SchoolSchema = new mongoose.Schema({
   location: LocationSchema,
   pointOfContact: ContactSchema,
   programs: {
-    type: Array
-  }
+    type: Array,
+  },
+  premiumMembership: Boolean,
 });
 
 const SchoolModel = mongoose.model("School", SchoolSchema);

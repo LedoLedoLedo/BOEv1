@@ -152,7 +152,7 @@ app.post("/login", checkNotAuthenticated, (req, res, next) => {
 
     if (!user) {
       console.log("ERROR logging in: ", msg.message);
-      req.flash("error", msg.message);
+      // req.flash("error", msg.message);
       return res.redirect("back");
     }
 

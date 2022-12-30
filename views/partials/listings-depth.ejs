@@ -3,7 +3,7 @@
     <% let toShow = "" %> <% let sortedSchools = [...schools] %> <%
     sortedSchools.sort((a, b) => { %> <% if (a.name < b.name) { %> <% return -1;
     %> <% } %> <% }); %> <% sortedSchools.forEach(function(school, i) { %> <% if
-    (i === 1) { %> <% toShow = "show" %> <% } else { %> <% toShow = "" %> <% }
+    (i === 2) { %> <% toShow = "show" %> <% } else { %> <% toShow = "" %> <% }
     %>
     <li
       id="item-<%=i%>"
