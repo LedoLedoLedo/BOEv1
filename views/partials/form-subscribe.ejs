@@ -9,24 +9,36 @@
     <span><i class="fa fa-exclamation-triangle" aria-hidden="true"> </i> </span>
     <%=subError %> <% } %>
   </p>
-  <label for="fname" class="form-label">First Name</label>
-  <input type="text" name="fname" autocomplete="given-name" value="<%=
-  isAuthenticated ? firstName : "" %>" required />
-  <label for="lname" class="form-label">Last Name</label>
-  <input type="text" name="lname" autocomplete="family-name" value="<%=
-  isAuthenticated ? lastName : "" %>" required />
+  <fieldset class="lo-name-section">
+    <section>
+      <label for="fname" class="form-label">First Name</label>
+      <input type="text" name="fname" autocomplete="given-name" value="<%=
+      isAuthenticated ? firstName : "" %>" required />
+    </section>
+    <section>
+      <label for="lname" class="form-label">Last Name</label>
+      <input type="text" name="lname" autocomplete="family-name" value="<%=
+      isAuthenticated ? lastName : "" %>" required />
+    </section>
+  </fieldset>
   <label for="email">Email</label>
   <input type="email" name="email" autocomplete="email" value="<%=
   isAuthenticated ? email : "" %>" required />
-  <fieldset>
-    <label for="state">State</label>
-    <select name="state" id="state">
-      <option value="Florida">Florida</option>
-    </select>
-    <label for="city">City</label>
-    <input type="text" name="city" autocomplete="address-level2" required />
-    <label for="zipcode">ZIP Code</label>
-    <input type="text" name="zipcode" autocomplete="postal-code" required />
+  <fieldset class="lo-address-section">
+    <section>
+      <label for="city">City</label>
+      <input type="text" name="city" autocomplete="address-level2" required />
+    </section>
+    <section>
+      <label for="state">State</label>
+      <select name="state" id="state">
+        <option value="Florida">Florida</option>
+      </select>
+    </section>
+    <section>
+      <label for="zipcode">ZIP Code</label>
+      <input type="text" name="zipcode" autocomplete="postal-code" required />
+    </section>
   </fieldset>
   <hr />
   <fieldset class="lo-trade-section">
@@ -58,7 +70,7 @@
 
     <datalist id="trade-options">
       <% programs.forEach( program => { %>
-        <option value="<%= program %>"></option>
+      <option value="<%= program %>"></option>
       <% }); %>
     </datalist>
   </fieldset>

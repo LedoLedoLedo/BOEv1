@@ -7,7 +7,6 @@
   --bg-color-mid: #f0f2f5;
   --bg-color-light: #f8f9fa;
 
-  /* --text-color-dark: #212529; */
   --text-color-dark: #1b3223;
   --text-color-mid: #00000099;
   --text-color-light: #00000099;
@@ -43,7 +42,6 @@ body {
   color: var(--text-color-dark);
   background-color: var(--bg-color-light);
   background-color: var(--bg-color-mid);
-  /* background-color: var(--bg-color-dark); */
   -webkit-text-size-adjust: 100%;
 }
 
@@ -103,11 +101,6 @@ button.nav-btn.fa-sign-in {
   background-color: var(--logo-color) !important;
   border-bottom: 1px solid var(--color-border);
   box-shadow: rgb(0 0 0 / 18%) 0px 2px 4px;
-  background: linear-gradient(
-    139deg,
-    var(--logo-color) 35%,
-    rgba(144, 222, 171, 1) 100%
-  );
   background: linear-gradient(
     150deg,
     hsla(141, 31%, 38%, 1) 24%,
@@ -486,6 +479,20 @@ input::file-selector-button {
   margin: 2px 0 15px;
   border: 1px solid var(--color-border);
   background-color: transparent;
+}
+
+.lo-name-section,
+.lo-address-section {
+  display: flex;
+  justify-content: space-between;
+}
+
+.lo-name-section section {
+  width: 48%;
+}
+
+.lo-address-section section {
+  width: 30%;
 }
 
 /* ------------------------------ SUBSCRIBE GALLERY ------------------------------ */
